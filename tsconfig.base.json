@@ -18,7 +18,8 @@
       "@stop-game-next-atoms/*" : ["apps/stop-game-next/components/atoms/*"],
       "@stop-game-next-molecules/*" : ["apps/stop-game-next/components/molecules/*"],
       "@stop-game-next-organisms/*" : ["apps/stop-game-next/components/organisms/*"],
-      "@stop-game-next-layouts/*" : ["apps/stop-game-next/layouts/*"]
+      "@stop-game-next-layouts/*" : ["apps/stop-game-next/layouts/*"],
+      "@stop-game-next-lib/*" : ["apps/stop-game-next/lib/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

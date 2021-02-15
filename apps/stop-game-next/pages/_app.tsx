@@ -3,7 +3,7 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 import MainToolbar from '@stop-game-next-organisms/mainToolbar/mainToolbar';
 import { ReactComponent as NxLogo } from '../public/nx-logo-white.svg';
-// import './styles.css';
+import './styles.scss';
 
 function CustomApp({ Component, pageProps }: AppProps) {
   return (
@@ -13,13 +13,9 @@ function CustomApp({ Component, pageProps }: AppProps) {
       </Head>
       <div className="app">
         <MainToolbar></MainToolbar>
-        {/* <header className="flex">
-          <NxLogo width="75" height="50" />
-          <h1>Welcome to stop-game-next!</h1>
-        </header>
-        <main>
+        <main className="main_content">
           <Component {...pageProps} />
-        </main> */}
+        </main>
       </div>
     </>
   );
