@@ -20,6 +20,7 @@
     "stop-game-next-e2e": {
       "tags": [],
       "implicitDependencies": ["stop-game-next"]
-    }
+    },
+    "stop-game-api": { "tags": [] }
   }
 }
