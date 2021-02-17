@@ -21,6 +21,7 @@
       "tags": [],
       "implicitDependencies": ["stop-game-next"]
     },
-    "stop-game-api": { "tags": [] }
+    "stop-game-api": { "tags": [] },
+    "data": { "tags": [] }
   }
 }
