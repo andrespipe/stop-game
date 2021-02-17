@@ -1,9 +1,20 @@
 {
   "version": 2,
-  "cli": { "defaultCollection": "@nrwl/next" },
+  "cli": {
+    "defaultCollection": "@nrwl/next"
+  },
   "generators": {
-    "@nrwl/react": { "application": { "babel": true } },
-    "@nrwl/next": { "application": { "style": "scss", "linter": "eslint" } }
+    "@nrwl/react": {
+      "application": {
+        "babel": true
+      }
+    },
+    "@nrwl/next": {
+      "application": {
+        "style": "scss",
+        "linter": "eslint"
+      }
+    }
   },
   "defaultProject": "stop-game-next",
   "projects": {
@@ -14,16 +25,23 @@
       "targets": {
         "build": {
           "executor": "@nrwl/next:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "root": "apps/stop-game-next",
             "outputPath": "dist/apps/stop-game-next"
           },
-          "configurations": { "production": {} }
+          "configurations": {
+            "production": {}
+          }
         },
         "serve": {
           "executor": "@nrwl/next:server",
-          "options": { "buildTarget": "stop-game-next:build", "dev": true },
+          "options": {
+            "buildTarget": "stop-game-next:build",
+            "dev": true
+          },
           "configurations": {
             "production": {
               "buildTarget": "stop-game-next:build:production",
@@ -33,17 +51,23 @@
         },
         "export": {
           "executor": "@nrwl/next:export",
-          "options": { "buildTarget": "stop-game-next:build:production" }
+          "options": {
+            "buildTarget": "stop-game-next:build:production"
+          }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/stop-game-next/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": [
+              "apps/stop-game-next/**/*.{ts,tsx,js,jsx}"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/stop-game-next"],
+          "outputs": [
+            "coverage/apps/stop-game-next"
+          ],
           "options": {
             "jestConfig": "apps/stop-game-next/jest.config.js",
             "passWithNoTests": true
@@ -72,7 +96,9 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/stop-game-next-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/stop-game-next-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -85,12 +111,16 @@
       "targets": {
         "build": {
           "executor": "@nrwl/node:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/stop-game-api",
             "main": "apps/stop-game-api/src/main.ts",
             "tsConfig": "apps/stop-game-api/tsconfig.app.json",
-            "assets": ["apps/stop-game-api/src/assets"]
+            "assets": [
+              "apps/stop-game-api/src/assets"
+            ]
           },
           "configurations": {
             "production": {
@@ -108,15 +138,23 @@
         },
         "serve": {
           "executor": "@nrwl/node:execute",
-          "options": { "buildTarget": "stop-game-api:build" }
+          "options": {
+            "buildTarget": "stop-game-api:build"
+          }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "options": { "lintFilePatterns": ["apps/stop-game-api/**/*.ts"] }
+          "options": {
+            "lintFilePatterns": [
+              "apps/stop-game-api/**/*.ts"
+            ]
+          }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/stop-game-api"],
+          "outputs": [
+            "coverage/apps/stop-game-api"
+          ],
           "options": {
             "jestConfig": "apps/stop-game-api/jest.config.js",
             "passWithNoTests": true
@@ -131,13 +169,78 @@
       "targets": {
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "options": { "lintFilePatterns": ["libs/data/**/*.ts"] }
+          "options": {
+            "lintFilePatterns": [
+              "libs/data/**/*.ts"
+            ]
+          }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/data"],
+          "outputs": [
+            "coverage/libs/data"
+          ],
           "options": {
             "jestConfig": "libs/data/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "game-socket": {
+      "root": "apps/game-socket",
+      "sourceRoot": "apps/game-socket/src",
+      "projectType": "application",
+      "prefix": "game-socket",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/apps/game-socket",
+            "main": "apps/game-socket/src/main.ts",
+            "tsConfig": "apps/game-socket/tsconfig.app.json",
+            "assets": [
+              "apps/game-socket/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/game-socket/src/environments/environment.ts",
+                  "with": "apps/game-socket/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "game-socket:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/game-socket/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/game-socket"
+          ],
+          "options": {
+            "jestConfig": "apps/game-socket/jest.config.js",
             "passWithNoTests": true
           }
         }
