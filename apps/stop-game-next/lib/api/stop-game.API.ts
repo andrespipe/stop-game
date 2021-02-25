@@ -20,6 +20,7 @@ const StopGameAPI = {
     return promise;
   },
   getPublicGames: (): Promise<IStopGame[]> => {
+    console.log('getPublicGames FN');
     const url = `${baseURL}/stop-game`;
     const promise = new Promise<IStopGame[]>((resolve, reject) => {
       fetch(url, {
@@ -37,7 +38,10 @@ const StopGameAPI = {
         method: 'PUT',
         body: JSON.stringify(player),
       })
-        .then((response) => resolve(response.json()))
+        .then((response) => {
+          console.log('response', response);
+          resolve(response.json());
+        })
         .catch((error) => reject(error));
     });
     return promise;
