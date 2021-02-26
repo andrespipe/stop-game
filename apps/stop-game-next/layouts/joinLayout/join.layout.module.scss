@@ -1,6 +1,5 @@
 .main__wrapper {
   display: grid;
-  grid-template-columns: 40px 50px auto 50px 40px;
-  & > div {
-  }
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-gap: 1rem;
 }
