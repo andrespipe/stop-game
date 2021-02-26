@@ -1,19 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import StopGameAPI from '@stop-game-next-lib/api/stop-game.API';
+import JoinLayout from '@stop-game-next-layouts/joinLayout/join.layout';
 
 export default function Join() {
 
-  const loadGames = (e) => {
-    console.log('clicked');
+  const [gamesList, setGamesList] = useState([]);
+
+  useEffect(() => {
+    loadGames();
+  }, []);
+
+  const loadGames = () => {
     StopGameAPI
       .getPublicGames()
-      .then(ans => console.log('getPublicGames', ans));
+      .then(handleGames)
+      .catch(handleError);
   }
 
-  return (
-    <>
-    Join!
-    <button onClick={loadGames}>load games</button>
-    </>
-  );
+  const handleGames = (list) => {
+    console.log(list);
+    setGamesList(list);
+  };
+
+  const handleError = (error) => {
+    console.error(error);
+    setGamesList([]);
+  };
+
+  return (<JoinLayout gamesList={ gamesList } />);
 }

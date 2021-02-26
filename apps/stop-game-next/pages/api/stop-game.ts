@@ -7,6 +7,7 @@ const stopGameController = {
       const connection = await connectDB();
       const stopGame = StopGameCollection(connection);
       const result = await stopGame.find().exec();
+      connection.close();
       res.end(JSON.stringify(result));
     } catch (error) {
       res.end(JSON.stringify({ error }));
@@ -19,7 +20,7 @@ const stopGameController = {
 
 const handler = async (req, res) => {
   const { method } = req;
-  stopGameController[method](req, res);
+  await stopGameController[method](req, res);
 };
 
 // export default connectDB(handler);

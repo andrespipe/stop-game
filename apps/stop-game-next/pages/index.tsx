@@ -12,11 +12,13 @@ export function Index() {
   const [ items, setItems ] = useState([]);
 
   useEffect(() => {
-    HomeAPI.getHomeItems().subscribe({
-      next: handleHomeItems,
-      error: handleError,
-    });
-  });
+    if (!isLoaded) {
+      HomeAPI.getHomeItems().subscribe({
+        next: handleHomeItems,
+        error: handleError,
+      });
+    }
+  }, []);
 
   const handleHomeItems = (homeItems: IHomeItem[]) => {
     setIsLoaded(true);
