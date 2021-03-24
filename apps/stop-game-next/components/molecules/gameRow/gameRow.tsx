@@ -3,10 +3,10 @@ import { IStopGame } from '@stop-game/data';
 import { Button, TableCell, TableRow } from '@material-ui/core';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
-export default function GameRow({ item, key } : { item: IStopGame, key: number }) {
+export default function GameRow({ item } : { item: IStopGame }) {
 
   return (
-    <TableRow key={key}>
+    <TableRow>
         <TableCell>{ item.players.length }</TableCell>
         <TableCell>{ item.language }</TableCell>
         <TableCell>{ item.rounds }</TableCell>
