@@ -23,6 +23,8 @@
     },
     "stop-game-api": { "tags": [] },
     "data": { "tags": [] },
-    "game-socket": { "tags": [] }
+    "game-socket": { "tags": [] },
+    "stop-game-ng": { "tags": [] },
+    "stop-game-ng-e2e": { "tags": [], "implicitDependencies": ["stop-game-ng"] }
   }
 }

@@ -14,6 +14,20 @@
         "style": "scss",
         "linter": "eslint"
       }
+    },
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
     }
   },
   "defaultProject": "stop-game-next",
@@ -242,6 +256,126 @@
           "options": {
             "jestConfig": "apps/game-socket/jest.config.js",
             "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "stop-game-ng": {
+      "projectType": "application",
+      "root": "apps/stop-game-ng",
+      "sourceRoot": "apps/stop-game-ng/src",
+      "prefix": "app",
+      "targets": {
+        "build": {
+          "executor": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/stop-game-ng",
+            "index": "apps/stop-game-ng/src/index.html",
+            "main": "apps/stop-game-ng/src/main.ts",
+            "polyfills": "apps/stop-game-ng/src/polyfills.ts",
+            "tsConfig": "apps/stop-game-ng/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/stop-game-ng/src/favicon.ico",
+              "apps/stop-game-ng/src/assets"
+            ],
+            "styles": [
+              "apps/stop-game-ng/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/stop-game-ng/src/environments/environment.ts",
+                  "with": "apps/stop-game-ng/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "stop-game-ng:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "stop-game-ng:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "executor": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "stop-game-ng:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/stop-game-ng/src/**/*.ts",
+              "apps/stop-game-ng/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/stop-game-ng"
+          ],
+          "options": {
+            "jestConfig": "apps/stop-game-ng/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "stop-game-ng-e2e": {
+      "root": "apps/stop-game-ng-e2e",
+      "sourceRoot": "apps/stop-game-ng-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/stop-game-ng-e2e/cypress.json",
+            "tsConfig": "apps/stop-game-ng-e2e/tsconfig.e2e.json",
+            "devServerTarget": "stop-game-ng:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "stop-game-ng:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/stop-game-ng-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
