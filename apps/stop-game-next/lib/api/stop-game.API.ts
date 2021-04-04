@@ -29,18 +29,23 @@ const StopGameAPI = {
     });
     return promise;
   },
-  joinGame: (gameCode: string, player: IPlayer): Promise<IStopGame> => {
+  joinGame: (
+    gameCode: string,
+    player: IPlayer
+  ): Promise<{ response: IStopGame; request }> => {
     const url = `${baseURL}/stop-game/${gameCode}/player`;
-    const promise = new Promise<IStopGame>((resolve, reject) => {
-      fetch(url, {
-        method: 'PUT',
-        body: JSON.stringify(player),
-      })
-        .then((response) => {
-          resolve(response.json());
+    const promise = new Promise<{ response: IStopGame; request }>(
+      (resolve, reject) => {
+        fetch(url, {
+          method: 'PUT',
+          body: JSON.stringify(player),
         })
-        .catch((error) => reject(error));
-    });
+          .then((response) => {
+            resolve(response.json());
+          })
+          .catch((error) => reject(error));
+      }
+    );
     return promise;
   },
   openGame: (game: IStopGame, myNickname: string): any => {

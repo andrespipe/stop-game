@@ -25,7 +25,7 @@ const stopGameDetailController = {
     result.players = body.players;
     result.rounds = body.rounds;
     const savedGame = await result.save();
-    res.end(JSON.stringify(savedGame));
+    res.end(JSON.stringify({ response: savedGame, request: { gameId, body } }));
   },
 };
 

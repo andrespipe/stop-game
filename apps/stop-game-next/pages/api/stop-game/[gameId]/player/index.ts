@@ -36,7 +36,15 @@ const stopGameDetailPlayerController = {
       game.players.push(player);
       savedGame = await game.save();
     }
-    res.end(StopGameHelper.dbMapperStr(savedGame));
+    res.end(
+      JSON.stringify({
+        response: StopGameHelper.dbMapperStr(savedGame),
+        request: {
+          gameId,
+          player,
+        },
+      })
+    );
   },
 };
 

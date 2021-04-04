@@ -5,6 +5,7 @@ import { Box, Button, Card, CardActions, CardContent, FormControl, TextField } f
 import StopGameAPI from '@stop-game-next-lib/api/stop-game.API';
 import { IPlayer, IStopGame } from '@stop-game/data';
 import { useRouter } from 'next/dist/client/router';
+// import SessionContext from '@stop-game-next-context/SessionContext';
 
 export default function JoinGameForm() {
 
@@ -22,10 +23,15 @@ export default function JoinGameForm() {
       gameCode: Yup.string().required('Required'),
       nickName: Yup.string().required('Required'),
     }),
-    onSubmit: (values) => {
+    onSubmit: (values, ) => {
       joinGame(values);
     },
   });
+
+  const handleSubmit = (handlers, formikHelpers) => (values): void | Promise<any> => {
+    console.log({ handlers, values });
+    // joinGame(values);
+  };
 
   const joinGame = (values: { gameCode: string, nickName: string }) => {
     setIsLoading(true);
@@ -35,8 +41,9 @@ export default function JoinGameForm() {
       .then(handleJoinGame);
   }
 
-  const handleJoinGame = (game: IStopGame) => {
-    const { id } = game;
+  const handleJoinGame = (result: { response: IStopGame, request }) => {
+    const { response: {id}, request } = result;
+    console.log({ request });
     router.push(`/game/${id}`);
   }
 
@@ -71,4 +78,40 @@ export default function JoinGameForm() {
       </Card>
     </form>
   );
+
+  // return (
+  //   <SessionContext.Consumer>
+  //     {( ({ gameId, setGameId, user, setUser }) => (
+  //       <form onSubmit={handleSubmit({ gameId, setGameId, user, setUser })}>
+  //       <Card>
+  //         <CardContent>
+  //           <Box p={3}>
+  //             <FormControl fullWidth={true}>
+  //               <TextField
+  //                 name="gameCode"
+  //                 label="Game code"
+  //                 onChange={formik.handleChange}
+  //                 value={formik.values.gameCode}
+  //               />
+  //             </FormControl>
+  //             <FormControl fullWidth={true}>
+  //               <TextField
+  //                 name="nickName"
+  //                 label="Nick name"
+  //                 onChange={formik.handleChange}
+  //                 value={formik.values.nickName}
+  //               />
+  //             </FormControl>
+  //           </Box>
+  //         </CardContent>
+  //         <CardActions>
+  //           <Box p={2}>
+  //           <Button type="submit" size="small" variant="contained" color="primary">Join game</Button>
+  //           </Box>
+  //         </CardActions>
+  //       </Card>
+  //     </form>
+  //     ) )}
+  //   </SessionContext.Consumer>
+  // );
 }

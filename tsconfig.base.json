@@ -22,6 +22,7 @@
       "@stop-game-next-organisms/*": [
         "apps/stop-game-next/components/organisms/*"
       ],
+      "@stop-game-next-context/*": ["apps/stop-game-next/context/*"],
       "@stop-game-next-layouts/*": ["apps/stop-game-next/layouts/*"],
       "@stop-game-next-lib/*": ["apps/stop-game-next/lib/*"],
       "@stop-game/data": ["libs/data/src/index.ts"]

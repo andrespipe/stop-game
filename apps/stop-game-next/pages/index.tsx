@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import HomeLayout from '@stop-game-next-layouts/homeLayout/homeLayout';
 import HomeAPI from '@stop-game-next-lib/api/homeAPI';
 import { IHomeItem } from '@stop-game-next-lib/types/homeItemType';
+import SessionContext from '@stop-game-next-context/SessionContext';
 
 import styles from './index.module.scss';
 
@@ -10,6 +11,15 @@ export function Index() {
   const [ error, setError] = useState(null);
   const [ isLoaded, setIsLoaded ] = useState(false);
   const [ items, setItems ] = useState([]);
+  // Contextual elements
+  const [ gameId, setGameId ] = useState(null);
+  const [ user, setUser ] = useState(null);
+  const sessionContextValue = {
+    gameId,
+    setGameId,
+    user,
+    setUser,
+  };
 
   useEffect(() => {
     if (!isLoaded) {
@@ -41,9 +51,11 @@ export function Index() {
   }
 
   return (
-    <div className={styles.page}>
-      { getHomeContent() }
-    </div>
+    <SessionContext.Provider value={sessionContextValue}>
+      <div className={styles.page}>
+        { getHomeContent() }
+      </div>
+    </SessionContext.Provider>
   );
 }
 
