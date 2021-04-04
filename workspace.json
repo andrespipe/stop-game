@@ -282,7 +282,11 @@
             "styles": [
               "apps/stop-game-ng/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/@fortawesome/fontawesome-free/js/brands.js",
+              "node_modules/@fortawesome/fontawesome-free/js/solid.js",
+              "node_modules/@fortawesome/fontawesome-free/js/fontawesome.js"
+            ]
           },
           "configurations": {
             "production": {
